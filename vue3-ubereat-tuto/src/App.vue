@@ -1,17 +1,17 @@
 <template>
   <div id="app">
-    <RestaurantCard/>
+  <RestaurantRow/>
 
   </div>
 </template>
 
 <script>
-import RestaurantCard from "@/components/RestaurantCard.vue";
+import RestaurantRow from "@/components/RestaurantRow";
 
 export default {
   name: 'App',
   components: {
-    RestaurantCard
+    RestaurantRow
   }
 }
 </script>
@@ -25,5 +25,6 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  padding: 20px;
 }
 </style>
