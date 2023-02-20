@@ -1,19 +1,22 @@
 <template>
   <div id="app">
-  <RestaurantRow/>
+    <h2 class="title">Nos restaurant</h2>
+    <home-page/>
 
   </div>
 </template>
 
 <script>
-import RestaurantRow from "@/components/RestaurantRow";
+import HomePage from "@/components/HomePage";
 
 export default {
   name: 'App',
   components: {
-    RestaurantRow
+    HomePage
   }
 }
+
+
 </script>
 
 <style>

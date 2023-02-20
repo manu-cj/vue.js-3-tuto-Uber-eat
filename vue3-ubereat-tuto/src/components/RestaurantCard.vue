@@ -5,12 +5,13 @@
     <div class="restaurant--informations">
       <div class="top">
         <p class="name">
-          subway
+          {{ info_restaurant.name }}
         </p>
         <p class="rating">
-          4.5
+          {{info_restaurant.note}}
         </p>
-        <p class="time">9 min
+        <p class="time">
+          {{info_restaurant.drive_time}}
         </p>
       </div>
     </div>
@@ -20,7 +21,10 @@
 
 <script>
 export default {
-  name: "RestaurantCard.vue"
+  name: "RestaurantCard.vue",
+  props : {
+    info_restaurant: Object
+  }
 }
 </script>
 
