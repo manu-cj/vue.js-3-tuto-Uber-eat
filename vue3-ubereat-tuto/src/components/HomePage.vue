@@ -57,11 +57,13 @@ export default {
     let user_search_restaurant = ref('');
 
     watch(user_search_restaurant, new_value => {
-      let regex = RegExp(new_value.toUpperCase());
-      let search_restaurant = all_restaurant.filter( restaurant => regex.test(restaurant.name));
+      let regex = RegExp(new_value);
+      let search_restaurant = all_restaurant.filter( restaurant => regex.test(restaurant.name.toLowerCase()));
 
       console.log(search_restaurant);
     });
+
+
     //
     onMounted(makeDataRestaurant);
 
