@@ -57,7 +57,7 @@ export default {
     let user_search_restaurant = ref('');
 
     watch(user_search_restaurant, new_value => {
-      let regex = RegExp(new_value);
+      let regex = RegExp(new_value.toUpperCase());
       let search_restaurant = all_restaurant.filter( restaurant => regex.test(restaurant.name));
 
       console.log(search_restaurant);
