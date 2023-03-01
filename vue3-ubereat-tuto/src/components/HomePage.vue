@@ -1,8 +1,18 @@
 <template>
   <div class="home">
     <div class="header">
-      <img src="../assets/ee037401cb5d31b23cf780808ee4ec1f.svg" alt="logo Uber eat">
-      <input v-model="user_search_restaurant" type="text" placeholder="De quoi avez vous envie ?">
+      <img src="../assets/ee037401cb5d31b23cf780808ee4ec1f.svg" alt="logo Uber eat" class="logo">
+      <div class="wrapper--input">
+        <input v-model="user_search_restaurant" type="text" placeholder="De quoi avez vous envie ?">
+        <div class="search">
+          <div v-for="(restaurant, i) in search_restaurant" :key="i" class="container--restaurant--search">
+            <div class="wrapper--img">
+              <img :src="restaurant.image"  alt="">
+            </div>
+            <p>{{restaurant.name}}</p>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="bannier"></div>
     <h2 class="title">Nos restaurant</h2>
@@ -55,13 +65,23 @@ export default {
     }
     // User search restaurant
     let user_search_restaurant = ref('');
-
+    let search_restaurant = ref([]);
     watch(user_search_restaurant, new_value => {
-      let regex = RegExp(new_value);
-      let search_restaurant = all_restaurant.filter( restaurant => regex.test(restaurant.name.toLowerCase()));
+      let regex = RegExp(new_value.toLowerCase());
+      let new_search_restaurant = all_restaurant.filter( restaurant => regex.test(restaurant.name.toLowerCase()));
 
-      console.log(search_restaurant);
-    });
+
+      // le ternaire suivant est strictement égal à la condition suivante
+
+      new_value == 0 ? search_restaurant.value = [] : search_restaurant.value = new_search_restaurant;
+    //   if (new_value == 0) {
+    //     search_restaurant.value = [];
+    //   }
+    //   else {
+    //     search_restaurant.value = new_search_restaurant;
+    //   }
+     });
+
 
 
     //
@@ -71,6 +91,7 @@ export default {
     return {
       data_restaurant,
       user_search_restaurant,
+      search_restaurant,
     }
 
   }
@@ -87,17 +108,29 @@ export default {
 
 }
 
-.home .header img {
+.home .header .logo {
   width: 200px;
 }
 
-.header input {
-  background-color: #f6f6f6;
+.header .wrapper--input {
+  position: relative;
+}
+
+.header .wrapper--input input {
+  background-color: rgba(246, 246, 246, 0.98);
   border: none;
   height: 80px;
-  width: 400px;
+  width: 100%;
   outline: none;
   padding-left: 20px;
+}
+
+.search {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+
+  background-color: #fff;
 }
 
 .bannier {
@@ -113,4 +146,28 @@ export default {
   justify-content: flex-start;
 }
 
+
+.container--restaurant--search {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.container--restaurant--search:hover {
+  background-color: #eeeeee;
+  cursor: pointer;
+}
+
+.wrapper--img {
+  width: 60px;
+  height: 60px;
+  margin-right: 25px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.wrapper--img img {
+  height: 100%;
+  width: auto;
+}
 </style>
