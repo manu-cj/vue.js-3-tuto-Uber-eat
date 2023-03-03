@@ -7,7 +7,7 @@ import RestaurantList from "@/components/RestaurantList.vue";
 
 const routes = [
     {path: '/', component: HomePage},
-    {path: '/restaurant', component: RestaurantList},
+    {name: 'Restaurant', path: '/restaurant/:name', component: RestaurantList},
 ]
 
 const router = createRouter({
